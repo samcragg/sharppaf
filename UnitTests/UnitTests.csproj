@@ -36,9 +36,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PostcodeBasicValidatingTests.cs" />
     <Compile Include="ExceptionRulesTests.cs" />
     <Compile Include="PafData.cs" />
     <Compile Include="POBoxNumberTests.cs" />
+    <Compile Include="PostcodeFormattingTests.cs" />
+    <Compile Include="PostcodeStrictValidatingTests.cs" />
     <Compile Include="PremiseElementsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
