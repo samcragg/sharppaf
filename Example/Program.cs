@@ -10,14 +10,14 @@
             var formatter = new AddressFormatter();
             var data = new PafData()
             {
-                OrganisationName = "SOUTH LANARKSHIRE COUNCIL",
-                DepartmentName = "HEAD START",
-                SubBuildingName = "UNIT 1",
-                BuildingName = "BLOCK 3",
-                ThoroughfareName = "THIRD",
-                ThoroughfareDescriptor = "ROAD",
-                DoubleDependentLocality = "BLANTYRE INDUSTRIAL ESTATE",
-                DependentLocality = "BLANTYRE",
+                OrganisationName = "South Lanarkshire Council",
+                DepartmentName = "Head Start",
+                SubBuildingName = "Unit 1",
+                BuildingName = "Block 3",
+                ThoroughfareName = "Third",
+                ThoroughfareDescriptor = "Road",
+                DoubleDependentLocality = "Blantyre Industrial Estate",
+                DependentLocality = "Blantyre",
                 PostTown = "GLASGOW",
                 Postcode = "G72 0UP"
             };

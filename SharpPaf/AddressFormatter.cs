@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
 
     /// <summary>
     /// Allows the formatting of PAF data for printing.
@@ -25,12 +24,12 @@
             }
 
             var lines = new List<string>(9);
-            AddUpperCase(lines, data.Postcode);
-            AddUpperCase(lines, data.PostTown);
-            AddTitleCase(lines, data.DependentLocality);
-            AddTitleCase(lines, data.DoubleDependentLocality);
-            AddTitleCase(lines, FormatThoroughfare(data.ThoroughfareName, data.ThoroughfareDescriptor));
-            AddTitleCase(lines, FormatThoroughfare(data.DependentThoroughfareName, data.DependentThoroughfareDescriptor));
+            AddIfNotEmpty(lines, data.Postcode);
+            AddIfNotEmpty(lines, data.PostTown);
+            AddIfNotEmpty(lines, data.DependentLocality);
+            AddIfNotEmpty(lines, data.DoubleDependentLocality);
+            AddIfNotEmpty(lines, FormatThoroughfare(data.ThoroughfareName, data.ThoroughfareDescriptor));
+            AddIfNotEmpty(lines, FormatThoroughfare(data.DependentThoroughfareName, data.DependentThoroughfareDescriptor));
 
             if (!string.IsNullOrWhiteSpace(data.POBoxNumber))
             {
@@ -41,10 +40,22 @@
                 AddPremisesElements(lines, data);
             }
 
-            AddTitleCase(lines, data.DepartmentName);
-            AddTitleCase(lines, data.OrganisationName);
+            AddIfNotEmpty(lines, data.DepartmentName);
+            AddIfNotEmpty(lines, data.OrganisationName);
 
             return CopyToReversedArray(lines);
+        }
+
+        private static void AddIfNotEmpty(List<string> lines, string value)
+        {
+            if (value != null)
+            {
+                value = value.Trim();
+                if (value.Length > 0)
+                {
+                    lines.Add(value);
+                }
+            }
         }
 
         private static void AddPOBox(List<string> lines, string number)
@@ -56,33 +67,9 @@
         {
             BuildingInfo info = ProcessExceptionRules(data);
             PrependIfSpecified(lines, info.BuildingNumber);
-            AddTitleCase(lines, info.BuildingName);
+            AddIfNotEmpty(lines, info.BuildingName);
             PrependIfSpecified(lines, info.SubBuildingNumber);
-            AddTitleCase(lines, info.SubBuildingName);
-        }
-
-        private static void AddTitleCase(List<string> lines, string value)
-        {
-            if (value != null)
-            {
-                value = TrimAndFormatToTitleCase(value);
-                if (value.Length > 0)
-                {
-                    lines.Add(value);
-                }
-            }
-        }
-
-        private static void AddUpperCase(List<string> lines, string value)
-        {
-            if (value != null)
-            {
-                value = value.Trim();
-                if (value.Length > 0)
-                {
-                    lines.Add(value.ToUpperInvariant());
-                }
-            }
+            AddIfNotEmpty(lines, info.SubBuildingName);
         }
 
         private static bool BuildingNameBelongsWithNumber(string name)
@@ -269,65 +256,6 @@
                     info.BuildingNumber = name.Substring(space);
                 }
             }
-        }
-
-        private static char ToLower(char c)
-        {
-            // Since PAF only contains ASCII text, this is quicker than
-            // char.ToLowerInvariant
-            if ((c >= 'A') && (c <= 'Z'))
-            {
-                return (char)('a' + (c - 'A'));
-            }
-
-            return c;
-        }
-
-        private static char ToUpper(char c)
-        {
-            // As with ToLower, this is quicker than char.ToUpperInvariant
-            if ((c >= 'a') && (c <= 'z'))
-            {
-                return (char)('A' + (c - 'a'));
-            }
-
-            return c;
-        }
-
-        private static string TrimAndFormatToTitleCase(string value)
-        {
-            int start = -1;
-            do
-            {
-                if (++start == value.Length)
-                {
-                    return string.Empty;
-                }
-            } while (char.IsWhiteSpace(value[start]));
-
-            int end;
-            for (end = value.Length - 1; end >= start; end--)
-            {
-                if (!char.IsWhiteSpace(value[end]))
-                {
-                    break;
-                }
-            }
-
-            var sb = new StringBuilder(value.Length);
-            sb.Append(ToUpper(value[start]));
-
-            for (int i = start + 1; i <= end; i++)
-            {
-                char previous = value[i - 1];
-                char current = value[i];
-
-                sb.Append(char.IsWhiteSpace(previous) ?
-                    ToUpper(current) :
-                    ToLower(current));
-            }
-
-            return sb.ToString();
         }
 
         private class BuildingInfo
