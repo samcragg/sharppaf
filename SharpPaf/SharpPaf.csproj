@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressFormatter.cs" />
+    <Compile Include="RomanNumeralParser.cs" />
+    <Compile Include="TitleCaseConverter.cs" />
     <Compile Include="IPafData.cs" />
     <Compile Include="PostcodeFormatter.cs" />
     <Compile Include="PostcodeOptions.cs" />

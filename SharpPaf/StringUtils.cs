@@ -74,6 +74,25 @@
         }
 
         /// <summary>
+        /// Converts the specified ASCII character to its lowercase version.
+        /// </summary>
+        /// <param name="value">The character to convert.</param>
+        /// <returns>The lowercased value.</returns>
+        public static char ToLower(char value)
+        {
+            unchecked
+            {
+                ushort delta = (ushort)(value - 'A');
+                if (delta <= (ushort)('Z' - 'A'))
+                {
+                    return (char)('a' + delta);
+                }
+
+                return value;
+            }
+        }
+
+        /// <summary>
         /// Converts an ASCII value to its uppercase equivalent.
         /// </summary>
         /// <param name="value">The character to convert.</param>
