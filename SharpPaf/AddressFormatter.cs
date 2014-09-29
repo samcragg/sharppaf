@@ -174,12 +174,23 @@
             }
         }
 
+        private static void ProcessBuildingNumberAndSubBuildingName(IPafData data, BuildingInfo info)
+        {
+            if (data.ConcatenateBuildingNumber)
+            {
+                info.BuildingNumber += data.SubBuildingName;
+                info.SubBuildingName = null;
+                info.SubBuildingNumber = null;
+            }
+        }
+
         private static BuildingInfo ProcessExceptionRules(IPafData data)
         {
             var info = new BuildingInfo();
             info.BuildingNumber = data.BuildingNumber;
             ProcessExceptions(data.BuildingName, ref info.BuildingName, ref info.BuildingNumber);
             ProcessExceptions(data.SubBuildingName, ref info.SubBuildingName, ref info.SubBuildingNumber);
+            ProcessBuildingNumberAndSubBuildingName(data, info);
 
             if (info.BuildingName != null)
             {

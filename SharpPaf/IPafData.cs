@@ -32,5 +32,11 @@
         string Postcode { get; }
 
         string POBoxNumber { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the building number and the
+        /// sub-building name should appear concatenated on the same line.
+        /// </summary>
+        bool ConcatenateBuildingNumber { get; }
     }
 }

@@ -36,6 +36,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressFormetterTests.cs" />
     <Compile Include="PostcodeBasicValidatingTests.cs" />
     <Compile Include="ExceptionRulesTests.cs" />
     <Compile Include="PafData.cs" />
