@@ -159,5 +159,23 @@
             Assert.That(lines[1], Is.EqualTo("Victoria House").IgnoreCase);
             Assert.That(lines[2], Is.EqualTo("15 The Street").IgnoreCase);
         }
+
+        [Test]
+        public void ShouldOutputTheBuildingNumberAndSubBuildingNameOnTheSameLineIfTheConcatenateFlagIsSet()
+        {
+            var data = new PafData()
+            {
+                SubBuildingName = "A",
+                BuildingNumber = "12",
+                ThoroughfareName = "SMITH STREET",
+                PostTown = "CORYTON",
+                Postcode = "BP23 6AA",
+                ConcatenateBuildingNumber = true
+            };
+
+            string[] lines = this.formatter.Format(data);
+
+            Assert.That(lines[0], Is.EqualTo("12A Smith Street").IgnoreCase);
+        }
     }
 }

@@ -31,5 +31,7 @@
         public string Postcode { get; set; }
 
         public string POBoxNumber { get; set; }
+
+        public bool ConcatenateBuildingNumber { get; set; }
     }
 }
