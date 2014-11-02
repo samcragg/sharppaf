@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("SharpPaf")]
 [assembly: AssemblyDescription("")]
@@ -15,3 +16,5 @@ using System.Resources;
 [assembly: CLSCompliant(true)]
 
 [assembly: AssemblyVersion("1.0")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+[assembly: InternalsVisibleTo("UnitTests")]

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F7EC9EF5-085D-407B-9BAA-40E4C244E785}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SharpPaf</RootNamespace>
+    <AssemblyName>SharpPaf.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SharpPaf.Data.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SharpPaf.Data.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddressFormatter.cs" />
+    <Compile Include="Data\AddressRecord.cs" />
+    <Compile Include="Data\BuildingNameRecord.cs" />
+    <Compile Include="Data\Check.cs" />
+    <Compile Include="Data\DeliveryPointType.cs" />
+    <Compile Include="Data\IO\FileSystem.cs" />
+    <Compile Include="Data\IO\IFileSystem.cs" />
+    <Compile Include="Data\LocalityRecord.cs" />
+    <Compile Include="Data\Mainfile.cs" />
+    <Compile Include="Data\MainfileFooter.cs" />
+    <Compile Include="Data\MainfileHeader.cs" />
+    <Compile Include="Data\MainfileInfo.cs" />
+    <Compile Include="Data\MainfileType.cs" />
+    <Compile Include="Data\OrganisationRecord.cs" />
+    <Compile Include="Data\PafRepository.cs" />
+    <Compile Include="Data\Parsers\AddressRecordParser.cs" />
+    <Compile Include="Data\Parsers\BuildingNameRecordParser.cs" />
+    <Compile Include="Data\Parsers\LocalityRecordParser.cs" />
+    <Compile Include="Data\Parsers\OrganisationRecordParser.cs" />
+    <Compile Include="Data\Parsers\RecordDataReader.cs" />
+    <Compile Include="Data\Parsers\RecordParser.cs" />
+    <Compile Include="Data\Parsers\RecordParserFactory.cs" />
+    <Compile Include="Data\Parsers\SubBuildingNameRecordParser.cs" />
+    <Compile Include="Data\Parsers\ThoroughfareDescriptorRecordParser.cs" />
+    <Compile Include="Data\Parsers\ThoroughfareRecordParser.cs" />
+    <Compile Include="Data\Parsers\WelshAddressRecordParser.cs" />
+    <Compile Include="Data\SubBuildingNameRecord.cs" />
+    <Compile Include="Data\ThoroughfareDescriptorRecord.cs" />
+    <Compile Include="Data\ThoroughfareRecord.cs" />
+    <Compile Include="RomanNumeralParser.cs" />
+    <Compile Include="TitleCaseConverter.cs" />
+    <Compile Include="IPafData.cs" />
+    <Compile Include="PostcodeFormatter.cs" />
+    <Compile Include="PostcodeOptions.cs" />
+    <Compile Include="PostcodeStrictValidator.cs" />
+    <Compile Include="PostcodeValidator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

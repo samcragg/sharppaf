@@ -110,5 +110,54 @@
                 return value;
             }
         }
+
+        /// <summary>
+        /// Converts the string representation of a number to its 32-bit signed
+        /// integer equivalent.
+        /// </summary>
+        /// <param name="buffer">
+        /// Contains the number to convert.
+        /// </param>
+        /// <param name="start">
+        /// The index in the buffer where the number start.
+        /// </param>
+        /// <param name="length">
+        /// The amount of digits to extract from the buffer.
+        /// </param>
+        /// <param name="result">
+        /// When this method returns, contains the 32-bit signed integer value
+        /// equivalent to the number contained in buffer, if the conversion
+        /// succeeded, or zero if the conversion failed.
+        /// </param>
+        /// <returns>
+        /// true if buffer was converted successfully; otherwise, false.
+        /// </returns>
+        /// <remarks>
+        /// This method will not parse negative numbers.
+        /// </remarks>
+        public static bool TryParseInt32(byte[] buffer, int start, int length, out int result)
+        {
+            int converted = 0;
+            int digits = 0;
+            for (int i = start; i < buffer.Length; i++)
+            {
+                if (digits++ == length)
+                {
+                    break;
+                }
+
+                ushort digit = (ushort)(buffer[i] - '0');
+                if (digit > '9')
+                {
+                    result = 0;
+                    return false;
+                }
+
+                converted = (converted * 10) + digit;
+            }
+
+            result = converted;
+            return true;
+        }
     }
 }

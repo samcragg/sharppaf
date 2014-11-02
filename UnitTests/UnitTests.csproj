@@ -30,13 +30,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.7.2.0\lib\NET45\NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressFormetterTests.cs" />
+    <Compile Include="Data\CreateReaderTests.cs" />
+    <Compile Include="Data\ExamplePafFileData.cs" />
+    <Compile Include="Data\MainfileBuilder.cs" />
+    <Compile Include="Data\MainfileInfoTests.cs" />
+    <Compile Include="Data\MainfileTests.cs" />
     <Compile Include="PostcodeBasicValidatingTests.cs" />
     <Compile Include="ExceptionRulesTests.cs" />
     <Compile Include="PafData.cs" />
@@ -51,13 +60,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharpPaf\SharpPaf.csproj">
-      <Project>{fe356987-e6a7-4a0a-9eb2-59ca173ad38e}</Project>
-      <Name>Paf</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SharpPaf\SharpPaf.Data.csproj">
+      <Project>{f7ec9ef5-085d-407b-9baa-40e4c244e785}</Project>
+      <Name>SharpPaf.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
