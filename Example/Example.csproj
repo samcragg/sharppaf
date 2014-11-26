@@ -35,14 +35,16 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormatOptions.cs" />
+    <Compile Include="MemoryRepository.cs" />
     <Compile Include="PafData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharpPaf\SharpPaf.csproj">
-      <Project>{fe356987-e6a7-4a0a-9eb2-59ca173ad38e}</Project>
-      <Name>Paf</Name>
+    <ProjectReference Include="..\SharpPaf\SharpPaf.Data.csproj">
+      <Project>{f7ec9ef5-085d-407b-9baa-40e4c244e785}</Project>
+      <Name>SharpPaf.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

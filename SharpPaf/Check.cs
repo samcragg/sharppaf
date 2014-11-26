@@ -1,4 +1,4 @@
-﻿namespace SharpPaf.Data
+﻿namespace SharpPaf
 {
     using System;
 

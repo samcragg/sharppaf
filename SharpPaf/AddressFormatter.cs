@@ -18,10 +18,7 @@
         /// <exception cref="ArgumentNullException">data is null.</exception>
         public string[] Format(IPafData data)
         {
-            if (data == null)
-            {
-                throw new ArgumentNullException("data");
-            }
+            Check.IsNotNull(data, "data");
 
             var lines = new List<string>(9);
             AddIfNotEmpty(lines, data.Postcode);
