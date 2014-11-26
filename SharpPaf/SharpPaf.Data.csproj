@@ -39,7 +39,7 @@
     <Compile Include="AddressFormatter.cs" />
     <Compile Include="Data\AddressRecord.cs" />
     <Compile Include="Data\BuildingNameRecord.cs" />
-    <Compile Include="Data\Check.cs" />
+    <Compile Include="Check.cs" />
     <Compile Include="Data\DeliveryPointType.cs" />
     <Compile Include="Data\IO\FileSystem.cs" />
     <Compile Include="Data\IO\IFileSystem.cs" />

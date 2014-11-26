@@ -134,7 +134,7 @@
 
         private static bool IsValidInwardAlpha(char value)
         {
-            // We Unlike the other IsValid helpers in this class, we're not sure
+            // Unlike the other IsValid helpers in this class, we're not sure
             // we've even been passed a letter in this method so we need to
             // check that first before the switch on the disallowed letters.
             value = StringUtils.ToUpper(value);
