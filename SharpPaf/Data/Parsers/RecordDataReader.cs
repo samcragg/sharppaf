@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.Common;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
 
@@ -105,6 +106,17 @@
         }
 
         /// <inheritdoc />
+        public string GetName(int i)
+        {
+            if (this.columnNames == null)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            return this.columnNames[i];
+        }
+
+        /// <inheritdoc />
         public int GetOrdinal(string name)
         {
             if (this.columnNames == null)
@@ -113,6 +125,24 @@
             }
 
             return Array.IndexOf(this.columnNames, name);
+        }
+
+        /// <inheritdoc />
+        public DataTable GetSchemaTable()
+        {
+            var table = new DataTable();
+            AddSchemaColumnsToTable(table);
+
+            for (int i = 0; i < this.FieldCount; i++)
+            {
+                DataRow row = table.NewRow();
+                row[0] = this.columnNames[i];
+                row[1] = i;
+                row[2] = this.columnTypes[i];
+                table.Rows.Add(row);
+            }
+
+            return table;
         }
 
         /// <inheritdoc />
@@ -145,6 +175,12 @@
         }
 
         /// <inheritdoc />
+        public bool NextResult()
+        {
+            return false;
+        }
+
+        /// <inheritdoc />
         public bool Read()
         {
             if (this.parser == null)
@@ -153,6 +189,8 @@
             }
 
             this.currentLine = this.parser.Read();
+
+            // Have we reached the end of the current parser?
             while (this.currentLine == null)
             {
                 if (!this.fileEnumerator.MoveNext())
@@ -168,6 +206,13 @@
             }
 
             return true;
+        }
+
+        private static void AddSchemaColumnsToTable(DataTable table)
+        {
+            table.Columns.Add(SchemaTableColumn.ColumnName, typeof(string));
+            table.Columns.Add(SchemaTableColumn.ColumnOrdinal, typeof(int));
+            table.Columns.Add(SchemaTableColumn.DataType, typeof(Type));
         }
 
         private void AssertValidCurrentLine()
@@ -192,18 +237,6 @@
         int IDataReader.RecordsAffected
         {
             get { throw new NotImplementedException(); }
-        }
-
-        [ExcludeFromCodeCoverage]
-        DataTable IDataReader.GetSchemaTable()
-        {
-            throw new NotImplementedException();
-        }
-
-        [ExcludeFromCodeCoverage]
-        bool IDataReader.NextResult()
-        {
-            throw new NotImplementedException();
         }
 
         [ExcludeFromCodeCoverage]
@@ -292,12 +325,6 @@
 
         [ExcludeFromCodeCoverage]
         long IDataRecord.GetInt64(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        [ExcludeFromCodeCoverage]
-        string IDataRecord.GetName(int i)
         {
             throw new NotImplementedException();
         }

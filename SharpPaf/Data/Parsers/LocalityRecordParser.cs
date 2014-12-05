@@ -23,9 +23,9 @@
             return new[]
             {
                 new KeyValuePair<string, Type>("Key", typeof(int)),
-                new KeyValuePair<string, Type>("PostTown", typeof(string)),
                 new KeyValuePair<string, Type>("DependentLocality", typeof(string)),
-                new KeyValuePair<string, Type>("DoubleDependentLocality", typeof(string))
+                new KeyValuePair<string, Type>("DoubleDependentLocality", typeof(string)),
+                new KeyValuePair<string, Type>("PostTown", typeof(string))
             };
         }
 
@@ -46,9 +46,9 @@
             return new object[]
             {
                 GetInt32(iterator, KeyStart, KeyLength),
-                GetString(iterator, PostTownStart, PostTownLength),
                 GetString(iterator, DependentLocalityStart, DependentLocalityLength),
-                GetString(iterator, DoubleDependentLocalityStart, DoubleDependentLocalityLength)
+                GetString(iterator, DoubleDependentLocalityStart, DoubleDependentLocalityLength),
+                GetString(iterator, PostTownStart, PostTownLength)
             };
         }
     }
