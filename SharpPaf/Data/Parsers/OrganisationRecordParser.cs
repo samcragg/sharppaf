@@ -22,9 +22,9 @@
             return new[]
             {
                 new KeyValuePair<string, Type>("Key", typeof(int)),
-                new KeyValuePair<string, Type>("PostcodeType", typeof(byte)),
                 new KeyValuePair<string, Type>("Name", typeof(string)),
-                new KeyValuePair<string, Type>("Department", typeof(string))
+                new KeyValuePair<string, Type>("Department", typeof(string)),
+                new KeyValuePair<string, Type>("PostcodeType", typeof(byte))
             };
         }
 
@@ -45,9 +45,9 @@
             return new object[]
             {
                 GetInt32(iterator, KeyStart, KeyLength),
-                (byte)ParsePostcodeType(iterator.Buffer[iterator.Offset + PostcodeTypeIndex]),
-                GetString(iterator, NameStart, NameLength),
+                GetString(iterator, NameStart, NameLength) ?? string.Empty, // Not sure if this is correct but the sample PAF data has completely empty organisations!?
                 GetString(iterator, DepartmentStart, DepartmentLength),
+                (byte)ParsePostcodeType(iterator.Buffer[iterator.Offset + PostcodeTypeIndex])
             };
         }
 

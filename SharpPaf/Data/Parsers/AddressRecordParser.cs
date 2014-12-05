@@ -44,22 +44,22 @@
             return new[]
             {
                 new KeyValuePair<string, Type>("Key", typeof(int)),
-                new KeyValuePair<string, Type>("Postcode", typeof(string)),
                 new KeyValuePair<string, Type>("LocalityKey", typeof(int)),
-                new KeyValuePair<string, Type>("ThoroughfareKey", typeof(int)),
-                new KeyValuePair<string, Type>("ThoroughfareDescriptorKey", typeof(int)),
+                new KeyValuePair<string, Type>("BuildingNameKey", typeof(int)),
                 new KeyValuePair<string, Type>("DependentThoroughfareKey", typeof(int)),
                 new KeyValuePair<string, Type>("DependentThoroughfareDescriptorKey", typeof(int)),
-                new KeyValuePair<string, Type>("BuildingNumber", typeof(short)),
-                new KeyValuePair<string, Type>("BuildingNameKey", typeof(int)),
-                new KeyValuePair<string, Type>("SubBuildingNameKey", typeof(int)),
-                new KeyValuePair<string, Type>("NumberOfHouseholds", typeof(short)),
                 new KeyValuePair<string, Type>("OrganisationKey", typeof(int)),
-                new KeyValuePair<string, Type>("PostcodeType", typeof(byte)),
-                new KeyValuePair<string, Type>("IsBuildingNumberConcatenated", typeof(bool)),
-                new KeyValuePair<string, Type>("DeliveryPointSuffix", typeof(string)),
-                new KeyValuePair<string, Type>("IsSmallUserOrganisation", typeof(bool)),
+                new KeyValuePair<string, Type>("SubBuildingNameKey", typeof(int)),
+                new KeyValuePair<string, Type>("ThoroughfareKey", typeof(int)),
+                new KeyValuePair<string, Type>("ThoroughfareDescriptorKey", typeof(int)),
+                new KeyValuePair<string, Type>("BuildingNumber", typeof(short)),
                 new KeyValuePair<string, Type>("POBoxNumber", typeof(string)),
+                new KeyValuePair<string, Type>("Postcode", typeof(string)),
+                new KeyValuePair<string, Type>("IsBuildingNumberConcatenated", typeof(bool)),
+                new KeyValuePair<string, Type>("IsSmallUserOrganisation", typeof(bool)),
+                new KeyValuePair<string, Type>("DeliveryPointSuffix", typeof(string)),
+                new KeyValuePair<string, Type>("NumberOfHouseholds", typeof(short)),
+                new KeyValuePair<string, Type>("PostcodeType", typeof(byte))
             };
         }
 
@@ -75,22 +75,22 @@
             return new object[]
             {
                  GetInt32(iterator, KeyStart, KeyLength),
-                 GetPostcode(iterator),
                  GetInt32(iterator, LocalityStart, LocalityLength),
-                 GetOptionalInt32(iterator, ThoroughfareStart, ThoroughfareLength),
-                 GetOptionalInt32(iterator, ThoroughfareDescriptorStart, ThoroughfareDescriptorLength),
+                 GetOptionalInt32(iterator, BuildingNameStart, BuildingNameLength),
                  GetOptionalInt32(iterator, DependentThoroughfareStart, DependentThoroughfareLength),
                  GetOptionalInt32(iterator, DependentThoroughfareDescriptorStart, DependentThoroughfareDescriptorLength),
-                 (short?)GetOptionalInt32(iterator, BuildingNumberStart, BuildingNumberLength),
-                 GetOptionalInt32(iterator, BuildingNameStart, BuildingNameLength),
-                 GetOptionalInt32(iterator, SubBuildingNameStart, SubBuildingNameLength),
-                 (short)GetInt32(iterator, NumberOfHouseholdsStart, NumberOfHouseholdsLength),
                  GetOptionalInt32(iterator, OrganisationStart, OrganisationLength),
-                 (byte)ParsePostcodeType(iterator.Buffer[iterator.Offset + PostcodeTypeIndex]),
+                 GetOptionalInt32(iterator, SubBuildingNameStart, SubBuildingNameLength),
+                 GetOptionalInt32(iterator, ThoroughfareStart, ThoroughfareLength),
+                 GetOptionalInt32(iterator, ThoroughfareDescriptorStart, ThoroughfareDescriptorLength),
+                 (short?)GetOptionalInt32(iterator, BuildingNumberStart, BuildingNumberLength),
+                 GetString(iterator, POBoxNumberStart, POBoxNumberLength),
+                 GetPostcode(iterator),
                  GetBoolean(iterator, ConcatenatedIndex),
-                 GetString(iterator, DeliveryPointSuffixStart, DeliveryPointSuffixLength),
                  GetBoolean(iterator, SmallUserOrganisationIndex),
-                 GetString(iterator, POBoxNumberStart, POBoxNumberLength)
+                 GetString(iterator, DeliveryPointSuffixStart, DeliveryPointSuffixLength),
+                 (short)GetInt32(iterator, NumberOfHouseholdsStart, NumberOfHouseholdsLength),
+                 (byte)ParsePostcodeType(iterator.Buffer[iterator.Offset + PostcodeTypeIndex])
             };
         }
 
