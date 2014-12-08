@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using SharpPaf.Data;
-
-namespace SqlServerExample
+﻿namespace SqlServerExample
 {
+    using System;
+    using System.Diagnostics;
+    using SharpPaf.Data;
+
     public static class Program
     {
         public static void Main(string[] args)
