@@ -137,7 +137,7 @@
         /// </remarks>
         public static bool TryParseInt32(byte[] buffer, int start, int length, out int result)
         {
-            int converted = 0;
+            uint converted = 0;
             int digits = 0;
             for (int i = start; i < buffer.Length; i++)
             {
@@ -146,7 +146,7 @@
                     break;
                 }
 
-                ushort digit = (ushort)(buffer[i] - '0');
+                uint digit = (uint)(buffer[i] - '0');
                 if (digit > '9')
                 {
                     result = 0;
@@ -156,7 +156,7 @@
                 converted = (converted * 10) + digit;
             }
 
-            result = converted;
+            result = (int)converted;
             return true;
         }
     }
