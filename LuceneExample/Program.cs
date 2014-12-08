@@ -23,20 +23,20 @@
             Console.WriteLine("finished ({0} inserted in {1:f1} secs.)", repository.Addresses.Count, stopwatch.Elapsed.TotalSeconds);
 
             // Create the Lucene.NET index
-            // Console.Write("Creating index...");
-            // DeleteExistingIndex();
-            // stopwatch.Restart();
-            // using (var indexer = new Indexer())
-            // {
-            //     foreach (KeyValuePair<int, string> address in repository.Addresses)
-            //     {
-            //         indexer.Add(address.Key, address.Value);
-            //     }
-            // 
-            //     indexer.Optimize();
-            // }
-            // stopwatch.Stop();
-            // Console.WriteLine("finished ({0:f1} secs.)", stopwatch.Elapsed.TotalSeconds);
+            Console.Write("Creating index...");
+            DeleteExistingIndex();
+            stopwatch.Restart();
+            using (var indexer = new Indexer())
+            {
+                foreach (KeyValuePair<int, string> address in repository.Addresses)
+                {
+                    indexer.Add(address.Key, address.Value);
+                }
+            
+                indexer.Optimize();
+            }
+            stopwatch.Stop();
+            Console.WriteLine("finished ({0:f1} secs.)", stopwatch.Elapsed.TotalSeconds);
 
             // An example search
             using (var finder = new AddressFinder())
